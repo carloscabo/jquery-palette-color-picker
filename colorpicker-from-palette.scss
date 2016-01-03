@@ -1,0 +1,73 @@
+$cpfp-width: 220px;
+
+$cpfp-border: #ccc;
+$cpfp-background: #fff;
+
+// Input
+input[data-colorpicker-from-palette] {
+  position: relative;
+  padding-left: 40px;
+  height: 32px;
+  border: 1px solid $cpfp-border;
+
+  cursor: pointer;
+
+  background-image: url(colorpicker-from-palette-icon.png);
+  background-position: left center;
+  background-repeat: no-repeat;
+}
+
+// Bubble
+.data-colorpicker-from-palette-bubble {
+  margin-bottom: 8px;
+  position: absolute;
+  bottom: 100%;
+  width: 100%;
+  max-width: $cpfp-width;
+  padding: 10px 8px 8px 8px;
+  border: 1px solid $cpfp-border;
+  border-radius: 3px;
+
+  // Arrow bottom
+  &:after,
+  &:before {
+  	top: 100%;
+  	left: 16px;
+  	border: solid transparent;
+  	content: ' ';
+  	height: 0;
+  	width: 0;
+  	position: absolute;
+  	pointer-events: none;
+  }
+  &:after {
+  	border-color: transparent;
+  	border-top-color: $cpfp-background;
+  	border-width: 8px;
+  	margin-left: -8px;
+  }
+  &:before {
+  	border-color: transparent;
+  	border-top-color: $cpfp-border;
+  	border-width: 9px;
+  	margin-left: -9px;
+  }
+
+  .swatch {
+    display: inline-block;
+    font: 0/0 a;
+    width: 12.66%;
+    padding-top: 11.66%;
+    margin: 1% 2%;
+    outline: 1px solid $cpfp-border;
+    border: 2px solid #fff;
+    border-radius: 3px;
+    cursor: pointer;
+
+    background-color: pink;
+
+    &.active {
+      outline-color: #000;
+    }
+  }
+}

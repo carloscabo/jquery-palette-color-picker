@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Colorpicker from palette demo</title>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+  <link rel="stylesheet" href="colorpicker-from-palette.css">
+
+  <style>
+    html {
+      -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+    }
+    *, *:before, *:after {
+      -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+    }
+    body {
+      padding: 400px 20px 20px 20px;
+    }
+    .row {
+      position: relative;
+    }
+
+  </style>
+
+  <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js"></script>
+  <script src="colorpicker-from-palette.js"></script>
+</head>
+<body>
+
+  <form action="">
+
+    <div class="row">
+
+      <input type="text" name="unique-name" data-colorpicker-from-palette data-palette='' value="#fff">
+
+    </div>
+
+  </form>
+
+</body>
+</html>
