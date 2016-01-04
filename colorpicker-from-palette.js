@@ -14,8 +14,6 @@ $(document).ready(function() {
                  .addClass('data-colorpicker-from-palette-bubble')
                  .attr('data-target', target);
 
-      console.log(colors);
-
       // Append clear
       $('<span>').addClass('swatch clear').appendTo( $bubble );
 
@@ -48,7 +46,18 @@ $(document).ready(function() {
       color = '';
     }
     $( '[name="'+$(this).parent().attr('data-target')+'"]' ).val( color );
+  });
 
+  $(document).on('click', '[data-colorpicker-from-palette]', function() {
+    var
+      target = $(this).attr('data-color');
+    $(this).parent().find('.active').removeClass('active');
+    $(this).addClass('active');
+
+    if ( typeof color === typeof undefined || color === false ) {
+      color = '';
+    }
+    $( '[name="'+$(this).parent().attr('data-target')+'"]' ).val( color );
   });
 
 });
