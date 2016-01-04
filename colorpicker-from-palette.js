@@ -1,7 +1,9 @@
 $(document).ready(function() {
   // La magia aquí
 
-  var $cps = $('[data-colorpicker-from-palette]');
+  var
+    ns = 'data-colorpicker-from-palette',
+    $cps = $('['+ns+']');
 
   $cps.each(function(idx, el) {
 
@@ -10,12 +12,14 @@ $(document).ready(function() {
       colors = $el.data('palette'),
       current_color = $el.val(),
       target = $el.attr('name'),
+      $button = $('<div>')
+                  .addClass(ns+'-button')
+                  .attr('data-target', target),
       $bubble = $('<div>')
-                 .addClass('data-colorpicker-from-palette-bubble')
-                 .attr('data-target', target);
+                 .addClass(ns+'-bubble');
 
       // Append clear
-      $('<span>').addClass('swatch clear').appendTo( $bubble );
+      $('<span>').addClass('swatch clear').attr('title', 'Clear selection').appendTo( $bubble );
 
       // test insert
       $.each( colors, function( idx, obj ) {
@@ -32,32 +36,29 @@ $(document).ready(function() {
         $sw.appendTo( $bubble );
       });
 
-      $bubble.insertBefore($el);
+      $button.append( $bubble ).insertBefore( $el );
 
   });
 
-  $(document).on('click', '.data-colorpicker-from-palette-bubble span.swatch', function(e) {
-    e.preventDefault();
-    $(this).parent().find('.active').removeClass('active');
-    $(this).addClass('active');
-
-    var color = $(this).attr('data-color');
-    if ( typeof color === typeof undefined || color === false ) {
-      color = '';
-    }
-    $( '[name="'+$(this).parent().attr('data-target')+'"]' ).val( color );
-  });
-
-  $(document).on('click', '[data-colorpicker-from-palette]', function() {
+  // Set / clear selected color
+  $(document).on('click', '.'+ns+'-bubble span.swatch', function() {
     var
-      target = $(this).attr('data-color');
-    $(this).parent().find('.active').removeClass('active');
-    $(this).addClass('active');
+      color = $( this ).attr('data-color'),
+      $parent = $( this ).closest( '.'+ns+'-button' ),
+      $bubble = $( this ).closest( '.'+ns+'-bubble' );
 
+    $bubble.find('.active').removeClass('active');
+    $(this).not('.clear').addClass('active');
     if ( typeof color === typeof undefined || color === false ) {
       color = '';
     }
-    $( '[name="'+$(this).parent().attr('data-target')+'"]' ).val( color );
+    $( '[name="'+$parent.attr('data-target')+'"]' ).val( color );
+    $bubble.hide();
+  });
+
+  // Opens
+  $(document).on('click', '.'+ns+'-button', function() {
+    $( this ).find('.'+ns+'-bubble').toggle();
   });
 
 });

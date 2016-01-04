@@ -1,29 +1,28 @@
 $cpfp-width: 220px;
 
-$cpfp-border: #ccc;
+$cpfp-border: #ddd;
 $cpfp-background: #fff;
 
-// Input
-input[data-colorpicker-from-palette] {
+// Button
+.data-colorpicker-from-palette-button {
   position: relative;
-  padding-left: 40px;
+  display: inline-block;
+  width: 32px;
   height: 32px;
-  border: 1px solid $cpfp-border;
-
+  margin-right: 8px;
+  background: url(colorpicker-from-palette-icon.png) center center no-repeat;
   cursor: pointer;
 
-  background-image: url(colorpicker-from-palette-icon.png);
-  background-position: left center;
-  background-repeat: no-repeat;
+  outline: 1px solid $cpfp-border;
+  border: 2px solid #fff;
 }
 
 // Bubble
 .data-colorpicker-from-palette-bubble {
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   position: absolute;
   bottom: 100%;
-  width: 100%;
-  max-width: $cpfp-width;
+  width: $cpfp-width;
   padding: 10px 8px 8px 8px;
   border: 1px solid $cpfp-border;
   border-radius: 3px;
@@ -32,7 +31,7 @@ input[data-colorpicker-from-palette] {
   &:after,
   &:before {
   	top: 100%;
-  	left: 16px;
+  	left: 12px;
   	border: solid transparent;
   	content: ' ';
   	height: 0;
@@ -54,6 +53,7 @@ input[data-colorpicker-from-palette] {
   }
 
   .swatch {
+    position: relative;
     display: inline-block;
     font: 0/0 a;
     width: 12.66%;
@@ -63,11 +63,29 @@ input[data-colorpicker-from-palette] {
     border: 2px solid #fff;
     border-radius: 3px;
     cursor: pointer;
+    overflow: hidden;
 
-    background-color: pink;
 
     &.active {
       outline-color: #000;
+    }
+
+    &.clear {
+      background-color: #fff;
+      &:before {
+        position: absolute;
+        content: '';
+        display: block;
+        top: -1px;
+        left: 0;
+        width: 100px;
+        height: 2px;
+        background-color: #e00;
+
+        transform-origin: 0 0;
+        transform:  rotate(45deg);
+
+      }
     }
   }
 }
