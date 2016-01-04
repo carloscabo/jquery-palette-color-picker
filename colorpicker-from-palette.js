@@ -6,23 +6,35 @@ $(document).ready(function() {
   $cps.each(function(idx, el) {
 
     var
-      target = $(el).attr('name'),
+      $el = $(el),
+      colors = $el.data('palette'),
+      current_color = $el.val(),
+      target = $el.attr('name'),
       $bubble = $('<div>')
                  .addClass('data-colorpicker-from-palette-bubble')
                  .attr('data-target', target);
 
+      console.log(colors);
+
+      // Append clear
+      $('<span>').addClass('swatch clear').appendTo( $bubble );
 
       // test insert
-      var num = 12;
-      for (var i = 0; i < num; i++) {
-        $bubble.append(
-          $('<span>').addClass('swatch').attr('data-color', '#f00')
-        );
-      }
+      $.each( colors, function( idx, obj ) {
+        var
+          key = Object.keys( obj ),
+          col = obj[key],
+          $sw = $('<span>').addClass('swatch')
+            .attr('title', key)
+            .attr('data-color', col)
+            .css('background-color', col);
 
-      if ( num < 6) { $bubble.addClass('single-line'); }
+        if ( col === current_color ) { $sw.addClass('active'); }
 
-      $bubble.insertBefore($(el));
+        $sw.appendTo( $bubble );
+      });
+
+      $bubble.insertBefore($el);
 
   });
 
