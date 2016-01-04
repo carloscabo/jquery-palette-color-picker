@@ -5,7 +5,7 @@
   <title>Colorpicker from palette demo</title>
 
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
-  <link rel="stylesheet" href="palette-color-picker.css">
+  <link rel="stylesheet" href="src/palette-color-picker.css">
 
   <style>
     html {
@@ -15,19 +15,22 @@
       -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
     }
     body {
-      padding: 400px 20px 20px 20px;
+      padding: 20px 20px 20px 20px;
     }
     .row {
       vertical-align: top;
     }
     input[data-palette-color-picker] {
       vertical-align: top;
+      font-family: Courier, monospace;
+      padding: 4px;
+      height: 30px;
     }
 
   </style>
 
   <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js"></script>
-  <script src="palette-color-picker.js"></script>
+  <script src="src/palette-color-picker.js"></script>
 </head>
 <body>
 
@@ -35,7 +38,7 @@
 
     <div class="row">
 
-      <input type="text" name="unique-name" data-palette-color-picker data-palette='[{"dieximohopum":"#0F8DFC"},{"quidermuroxtca":"rgba(135,1,101)"},{"pink":"#F00285"},{"unmeranelche":"hsla(190, 41%, 95%, 1)"},{"canrilanamhe":"#94B77E"},{"roefincocurre":"#4C060A"},{"goesubkalabi":"#053F32"},{"siospokarexin":"#ED8074"},{"In The Thicket\u2666": "#788364"}]' value="#4C060A">
+      <input type="text" name="unique-name" data-palette-color-picker='[{"dieximohopum":"#0F8DFC"},{"quidermuroxtca":"rgba(135,1,101)"},{"pink":"#F00285"},{"unmeranelche":"hsla(190, 41%, 95%, 1)"},{"canrilanamhe":"#94B77E"},{"roefincocurre":"#4C060A"},{"goesubkalabi":"#053F32"},{"siospokarexin":"#ED8074"},{"In The Thicket\u2666": "#788364"}]' value="#4C060A">
 
     </div>
 
