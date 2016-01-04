@@ -1,8 +1,17 @@
-$(document).ready(function() {
+(function($) {
+
+  $.paletteColorPicker = function( el, options ) {
+    var
+      ns = 'palette-color-picker',
+      plugin = this,
+      $el = $(el);
+  };
+
+})(jQuery);
   // La magia aquí
 
   var
-    ns = 'data-colorpicker-from-palette',
+    ns = 'palette-color-picker', // Namespace
     $cps = $('['+ns+']');
 
   $cps.each(function(idx, el) {
@@ -16,7 +25,7 @@ $(document).ready(function() {
                   .addClass(ns+'-button')
                   .attr('data-target', target),
       $bubble = $('<div>')
-                 .addClass(ns+'-bubble');
+                  .addClass(ns+'-bubble');
 
       // Append clear
       $('<span>').addClass('swatch clear').attr('title', 'Clear selection').appendTo( $bubble );
@@ -31,7 +40,10 @@ $(document).ready(function() {
             .attr('data-color', col)
             .css('background-color', col);
 
-        if ( col === current_color ) { $sw.addClass('active'); }
+        if ( col === current_color ) {
+          $sw.addClass('active');
+          $button.css('background', col);
+        }
 
         $sw.appendTo( $bubble );
       });
@@ -41,18 +53,24 @@ $(document).ready(function() {
   });
 
   // Set / clear selected color
-  $(document).on('click', '.'+ns+'-bubble span.swatch', function() {
+  $(document).on('click', '.'+ns+'-bubble span.swatch', function(e) {
+    e.stopPropagation();
     var
       color = $( this ).attr('data-color'),
-      $parent = $( this ).closest( '.'+ns+'-button' ),
+      $button = $( this ).closest( '.'+ns+'-button' ),
       $bubble = $( this ).closest( '.'+ns+'-bubble' );
 
     $bubble.find('.active').removeClass('active');
     $(this).not('.clear').addClass('active');
+
+    // Set background on color
     if ( typeof color === typeof undefined || color === false ) {
+      $button.removeAttr('style');
       color = '';
+    } else {
+      $button.css('background', color);
     }
-    $( '[name="'+$parent.attr('data-target')+'"]' ).val( color );
+    $( '[name="'+$button.attr('data-target')+'"]' ).val( color );
     $bubble.hide();
   });
 
@@ -61,4 +79,9 @@ $(document).ready(function() {
     $( this ).find('.'+ns+'-bubble').toggle();
   });
 
+});
+
+// Auto-init over elements with
+$(function() {
+  $('[data-palette-colorpicker]').paletteColorPicker();
 });

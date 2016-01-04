@@ -1,14 +1,16 @@
 $cpfp-width: 220px;
-
-$cpfp-border: #ddd;
+$cpfp-button-size: 34px;
+$cpfp-border: #bbb;
 $cpfp-background: #fff;
 
+
+
 // Button
-.data-colorpicker-from-palette-button {
+.palette-color-picker-button {
   position: relative;
   display: inline-block;
-  width: 32px;
-  height: 32px;
+  width: $cpfp-button-size;
+  height: $cpfp-button-size;
   margin-right: 8px;
   background: url(colorpicker-from-palette-icon.png) center center no-repeat;
   cursor: pointer;
@@ -18,8 +20,9 @@ $cpfp-background: #fff;
 }
 
 // Bubble
-.data-colorpicker-from-palette-bubble {
-  margin-bottom: 12px;
+.palette-color-picker-bubble {
+  display: none;
+  margin: 12px 0;
   position: absolute;
   bottom: 100%;
   width: $cpfp-width;
@@ -31,7 +34,7 @@ $cpfp-background: #fff;
   &:after,
   &:before {
   	top: 100%;
-  	left: 12px;
+  	left: 14px;
   	border: solid transparent;
   	content: ' ';
   	height: 0;
@@ -50,6 +53,14 @@ $cpfp-background: #fff;
   	border-top-color: $cpfp-border;
   	border-width: 9px;
   	margin-left: -9px;
+  }
+
+  .on-bottom {
+    bottom: auto;
+    top: 100%;
+
+    // Arow on top
+
   }
 
   .swatch {
