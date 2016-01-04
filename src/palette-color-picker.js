@@ -67,15 +67,17 @@
       // Simple click
       $button.append( $bubble ).on('click', function(){
         var $b = $( this );
-        $b.find('.'+ns+'-bubble').fadeToggle();
-        clearTimeout(plugin.timer);
-        plugin.timer = setTimeout(function(){
-          $b.trigger('pcp.fadeout');
-        }, 2000);
+        $b.toggleClass('active').find('.'+ns+'-bubble').fadeToggle();
+        if ($b.hasClass('active')) {
+          clearTimeout(plugin.timer);
+          plugin.timer = setTimeout(function(){
+            $b.trigger('pcp.fadeout');
+          }, 2000);
+        }
       })
       // Fade timer
       .on('pcp.fadeout', function() {
-        $( this ).find('.'+ns+'-bubble').fadeOut();
+        $( this ).removeClass('active').find('.'+ns+'-bubble').fadeOut();
       })
       // Enter bubble
       .on('mouseenter', '.'+ns+'-bubble', function() {
