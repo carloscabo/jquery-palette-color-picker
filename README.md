@@ -50,9 +50,11 @@ $(document).ready(function(){
     // Add custom class to the picker
     custom_class: 'double',
     // Force the position of picker's bubble
-    position: 'downside', // default -> "upside"
+    position: 'downside', // default -> 'upside'
     // Where is inserted the color picker's button, related to the input
-    insert: 'after', // default -> "before"
+    insert: 'after', // default -> 'before'
+    // Clear button on last position
+    clear_btn: 'last' // default -> 'first'
   });
 });
 ```

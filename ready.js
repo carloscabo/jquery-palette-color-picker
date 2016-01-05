@@ -1,4 +1,6 @@
 $(document).ready(function(){
   //La magia aquí
-  $('[data-palette]').paletteColorPicker();
+
+  // Default options
+  $('[name="unique-name-1"]').paletteColorPicker();
 });

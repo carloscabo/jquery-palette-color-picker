@@ -27,7 +27,8 @@
         custom_class: null,
         colors: null,
         position: 'upside', // downside
-        insert: 'before' // default
+        insert: 'before',   // default
+        clear_btn: 'first'  // default
       };
 
     // Init
@@ -48,8 +49,6 @@
         $bubble.addClass(plugin.settings.custom_class);
       }
 
-      // Create clear button
-      $('<span>').addClass('swatch clear').attr('title', 'Clear selection').appendTo( $bubble );
 
       // Create color swatches
       $.each( plugin.settings.colors, function( idx, obj ) {
@@ -69,9 +68,19 @@
         $sw.appendTo( $bubble );
       });
 
+      // Create clear button
+      var
+        $clear_btn = $('<span>').addClass('swatch clear').attr('title', 'Clear selection');
+      if (plugin.settings.clear_btn === 'last') {
+        $clear_btn.appendTo( $bubble );
+      } else {
+        $clear_btn.prependTo( $bubble );
+      }
+
       // Public
       plugin.destroy = function() {
-        // code goes here
+        $button.remove();
+        $.removeData( $el[0] );
       };
 
       // Events
