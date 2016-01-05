@@ -1,14 +1,18 @@
+/**
+ * JQuery Palette Color Picker v1.0 by Carlos Cabo ( @putuko )
+ * https://github.com/carloscabo/jquery-palette-color-picker
+ */
 (function($) {
   // La magia aquí
+  'use strict';
 
   // Publin core
   $.paletteColorPicker = function( el, options ) {
     var
       ns = 'palette-color-picker', // Base attr / class
-      $el = $(el);
+      $el = $(el),
       plugin = this,
       timer = null,
-      colors = $el.data(ns),
       current_color = $el.val(),
       target = $el.attr('name'),
       $button = $('<div>')
@@ -17,10 +21,11 @@
       $bubble = $('<div>')
                   .addClass(ns+'-bubble'),
       // Final settings will be stored here
-      plugin.settings = {},
+      settings = {},
       // Default settings
       defaults = {
-        size: null,
+        custom_class: null,
+        colors: null,
         position: 'upside', // downside
         insert: 'before' // default
       };
@@ -30,18 +35,24 @@
       // Extand settings with user options
       plugin.settings = $.extend({}, defaults, options);
 
+      // If color were not passed as options get them from data-palette
+      if (plugin.settings.colors === null) {
+        plugin.settings.colors = $el.data('palette');
+      }
+
       // Capitalize position
       plugin.settings.insert = plugin.settings.insert.charAt(0).toUpperCase() + plugin.settings.insert.slice(1);
 
       // Add custom class / size
-      if (plugin.settings.size) {
-        $bubble.addClass(plugin.settings.size);
+      if (plugin.settings.custom_class) {
+        $bubble.addClass(plugin.settings.custom_class);
       }
 
-      // Clear button
+      // Create clear button
       $('<span>').addClass('swatch clear').attr('title', 'Clear selection').appendTo( $bubble );
 
-      $.each( colors, function( idx, obj ) {
+      // Create color swatches
+      $.each( plugin.settings.colors, function( idx, obj ) {
         var
           key = Object.keys( obj ),
           col = obj[key],
@@ -132,7 +143,7 @@
 
 })(jQuery);
 
-// Auto-init over elements with
-$(function() {
-  $('[data-palette-color-picker]').paletteColorPicker();
-});
+// Sample usage
+// $(function() {
+//   $('[data-palette-color-picker]').paletteColorPicker();
+// });
