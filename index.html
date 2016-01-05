@@ -18,13 +18,16 @@
       padding: 20px 20px 20px 20px;
     }
     .row {
+      padding: 0 0 24px 0;
       vertical-align: top;
+      border-bottom: 1px solid #ccc;
     }
     input[type="text"] {
       vertical-align: top;
       font-family: Courier, monospace;
       padding: 4px;
       height: 30px;
+      margin-right: 8px;
     }
 
   </style>
@@ -35,13 +38,26 @@
 </head>
 <body>
 
-  <form action="">
-
     <div class="row">
+      <h3>Sample 1</h3>
       <input type="text" name="unique-name-1" data-palette='[{"primary": "#E91E63"},{"primary_dark": "#C2185B"},{"primary_light": "#F8BBD0"},{"accent": "#CDDC39"},{"primary_text": "#212121"},{"secondary_text": "#727272"},{"divider": "#B6B6B6"}]' value="#E91E63">
     </div>
 
-  </form>
+    <div class="row">
+      <h3>Sample 2</h3>
+      <input type="text" name="duplicated-name-2" data-palette='["#D50000","#304FFE","#00B8D4","#00C853","#FFD600","#FF6D00","#FF1744","#3D5AFE","#00E5FF","#00E676","#FFEA00","#FF9100","#FF5252","#536DFE","#18FFFF","#69F0AE","#FFFF00","#FFAB40"]' value="">
+      <input type="text" name="duplicated-name-2" data-palette='["#D50000","#304FFE","#00B8D4","#00C853","#FFD600","#FF6D00","#FF1744","#3D5AFE","#00E5FF","#00E676","#FFEA00","#FF9100","#FF5252","#536DFE","#18FFFF","#69F0AE","#FFFF00","#FFAB40"]' value="">
+    </div>
+
+    <div class="row">
+      <h3>Sample 3</h3>
+      <input type="text" id="unique-id" name="unique-name-3" data-palette='["#D50000","#304FFE","#00B8D4","#69F0AE","#FFFF00"]' value="#00B8D4">
+    </div>
+
+    <div class="row">
+      <h3>Sample 4</h3>
+      <input type="text" id="unique-id-2" name="unique-name-4" data-palette='["#D50000","#304FFE","#00B8D4","#69F0AE","#FFFF00"]' value="#CDDC39">
+    </div>
 
 </body>
 </html>

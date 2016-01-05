@@ -41,14 +41,20 @@
         plugin.settings.colors = $el.data('palette');
       }
 
+      // If color is array of string, convert to obj
+      if (typeof plugin.settings.colors[0] === 'string') {
+        plugin.settings.colors = $.map(plugin.settings.colors, function(el, idx) {
+          var b = {}; b[el] = el; return b;
+        });
+      }
+
       // Capitalize position
       plugin.settings.insert = plugin.settings.insert.charAt(0).toUpperCase() + plugin.settings.insert.slice(1);
 
-      // Add custom class / size
+      // Add custom_class
       if (plugin.settings.custom_class) {
         $bubble.addClass(plugin.settings.custom_class);
       }
-
 
       // Create color swatches
       $.each( plugin.settings.colors, function( idx, obj ) {
@@ -72,7 +78,7 @@
       var
         $clear_btn = $('<span>').addClass('swatch clear').attr('title', 'Clear selection');
       if (plugin.settings.clear_btn === 'last') {
-        $clear_btn.appendTo( $bubble );
+        $clear_btn.addClass('last').appendTo( $bubble );
       } else {
         $clear_btn.prependTo( $bubble );
       }
