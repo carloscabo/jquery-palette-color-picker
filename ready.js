@@ -16,9 +16,23 @@ $(document).ready(function(){
   });
 
   // Sample 4
-  $('#unique-id-2').paletteColorPicker({
-    colors: [{"primary": "#E91E63"},{"primary_dark": "#C2185B"},{"primary_light": "#F8BBD0"},{"accent": "#CDDC39"},{"primary_text": "#212121"},{"secondary_text": "#727272"},{"divider": "#B6B6B6"}],
+  $('#unique-id-4').paletteColorPicker({
+    colors: [
+      {"primary": "#E91E63"},
+      {"primary_dark": "#C2185B"},
+      {"primary_light": "#F8BBD0"},
+      {"accent": "#CDDC39"},
+      {"primary_text": "#212121"},
+      {"secondary_text": "#727272"},
+      {"divider": "#B6B6B6"}
+    ],
     position: 'downside', // default -> 'upside'
+  });
+
+  // Sample 5
+  $('#unique-id-5').paletteColorPicker({
+    custom_class: 'wide',
+    clear_btn: 'last'
   });
 
 

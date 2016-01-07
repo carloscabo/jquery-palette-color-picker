@@ -55,6 +55,8 @@ $(document).ready(function(){
     insert: 'after', // default -> 'before'
     // Clear button on last position
     clear_btn: 'last' // default -> 'first'
+    // Timeout for the picker's fade out in ms
+    timeout: 2000 // default -> 2000
   });
 });
 ```

@@ -115,4 +115,34 @@ $cpfp-background: #fff;
       }
     }
   }
+
+  // x2 width swatches
+  &.double {
+    .swatch {
+      width: 29.30%;
+      padding-top: 11.00%;
+      margin: 1% 2%;
+      &.clear {
+        &:before {
+          transform:  rotate(22.5deg);
+        }
+      }
+    }
+  }
+
+  // full width swatches
+  &.wide {
+    .swatch {
+      width: 93.2%;
+      padding-top: 11.00%;
+      margin: 1% 2%;
+      &.clear {
+        text-align: center;
+        &:before {
+          content: 'Clear selection';
+        }
+      }
+    }
+  }
+
 }

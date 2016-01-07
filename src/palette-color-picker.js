@@ -26,9 +26,10 @@
       defaults = {
         custom_class: null,
         colors: null,
-        position: 'upside', // downside
-        insert: 'before',   // default
-        clear_btn: 'first'  // default
+        position: 'upside',  // upside | downside
+        insert: 'before',    // default
+        clear_btn: 'first',  // default
+        timeout: 2000        // default
       };
 
     // Init
@@ -98,7 +99,7 @@
           clearTimeout(plugin.timer);
           plugin.timer = setTimeout(function(){
             $b.trigger('pcp.fadeout');
-          }, 2000);
+          }, plugin.settings.timeout);
         }
       })
       // Fade timer
@@ -113,14 +114,17 @@
       .on('mouseleave', '.'+ns+'-bubble', function() {
         plugin.timer = setTimeout(function(){
           $button.trigger('pcp.fadeout');
-        }, 2000);
+        }, plugin.settings.timeout);
       })
       // Click on swatches
       .on('click', 'span.swatch', function(e){
         var
           color = $( this ).attr('data-color'),
-          $button = $( this ).closest( '.'+ns+'-button' ),
+          // Select all button in document with same data target to keep them synconized
+          $button = $('.'+ns+'-button[data-target="' + $( this ).closest( '.'+ns+'-button' ).attr('data-target') + '"]'),
           $bubble = $( this ).closest( '.'+ns+'-bubble' );
+
+        // console.log('.'+ns+'-button [data-target="' + $( this ).closest( '.'+ns+'-button' ).attr('data-target') + '"]');
 
         $bubble.find('.active').removeClass('active');
 
