@@ -60,7 +60,3 @@ $(document).ready(function(){
   });
 });
 ```
-
-# TO-DO
-- Destroy picker
-- Refresh / update picker
