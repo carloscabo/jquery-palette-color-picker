@@ -1,5 +1,7 @@
 # JQuery Palette Color Picker
-JS component to pick colors from a predefined / restricted palette.
+JS component to pick colors from a predefined / restricted palette. <mark>Take a look to the `demo.html` included in this repository to see it in action.</mark>
+
+![Snapshot](https://raw.githubusercontent.com/carloscabo/jquery-palette-color-picker/master/img/snapshot.png)
 
 # Requirements
 
