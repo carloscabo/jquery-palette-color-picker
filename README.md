@@ -62,3 +62,9 @@ $(document).ready(function(){
   });
 });
 ```
+
+# Destroy instance of paletteColorPicker
+
+```javascript
+$( input_element ).data('paletteColorPickerPlugin').destroy();
+```
