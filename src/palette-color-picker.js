@@ -6,7 +6,7 @@
   // La magia aquí
   'use strict';
 
-  // Publin core
+  // Public core
   $.paletteColorPicker = function( el, options ) {
     var
       ns = 'palette-color-picker', // Base attr / class
