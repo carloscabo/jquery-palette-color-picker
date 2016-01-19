@@ -11,32 +11,35 @@ JS component to pick colors from a predefined / restricted palette. <mark>Take a
 
 # Basic usage
 
-Create a `<input type="text" name="UNIQUE_NAME">` in your `<html>` document. The `name` attribute is used to **bind the color picker to the input**, so its recommended to be **unique** if you have several inputs with the same name, all of them will change simultaneously when user picks a color.
+Create a `<input type="text" name="UNIQUE_NAME">` in your `<html>` document. The `name` attribute is used to **bind the color picker to the input**, so its recommended to be **unique** if you have several inputs with the same name, **all of them will change simultaneously when user picks a color**.
 
 Call `.paletteColorPicker()` over the input element.
 ```javascript
 $(document).ready(function(){
   $('[name="UNIQUE_NAME"]').paletteColorPicker();
-  // Also you can use somthing like
+  // You can use something like...
   // $('[data-palette]').paletteColorPicker();
 });
 ```
 
 # Color data
-The color options for the picker are automatically get from the `data-palette` attribute. You can define the colors as an array of **key: value** objects.
-````html
-<!-- Array of objects -->
-<input type="text" name="unique-name-1" data-palette='[{"dieximohopum":"#0F8DFC"},{"quidermuroxtca":"rgba(135,1,101)"},{"pink":"#F00285"},{"unmeranelche":"hsla(190, 41%, 95%, 1)"},{"canrilanamhe":"#94B77E"},{"roefincocurre":"#4C060A"},{"goesubkalabi":"#053F32"},{"siospokarexin":"#ED8074"},{"In The Thicket\u2666": "#788364"}]' value="#4C060A">
-````
-Also it can be done as an **array of strings**.
+The color options for the picker are automatically get from the `data-palette` attribute. You can define the colors as an array of **string values**.
 ````html
 <!-- Array of strings -->
-<input type="text" name="unique-name-2" data-palette='["#0F8DFC","rgba(135,1,101)","#F00285","hsla(190,41%,95%,1)","#94B77E","#4C060A","#053F32","#ED8074","#788364"]' value="#0F8DFC">
+<input type="text" name="unique-name-2" data-palette='["#0F8DFC","rgba(135,1,101)","#F00285","hsla(190,41%,95%,1)","#94B77E","#4C060A","#053F32","#ED8074","#788364"]' value="#053F32">
+````
+
+Alternativelly you can use an **array of objects** in **key: value pairs**. If you set the data this way, the keys will be used as value in the `input` field, this is useful if you want to work with class names... or strings representing the colors instead the color value itself.
+
+````html
+<!-- Array of objects -->
+<input type="text" name="unique-name-1" data-palette='[{"primary": "#E91E63"},{"primary_dark": "#C2185B"},{"primary_light": "#F8BBD0"},{"accent": "#CDDC39"},{"primary_text": "#212121"},{"secondary_text": "#727272"},{"divider": "#B6B6B6"}]' value="primary">
 ````
 
 # Color data on plugin initialization
-Additionally you can set the color palette on plugin initialization, doing so if `data-palette` attribute is present will be ignored.
+Additionally you can set the color palette in the options for the plugin initialization, doing so if `data-palette` attribute is present **will be ignored**.
 ```javascript
+// Basic usage, array of color values
 $(document).ready(function(){
   $('[name="UNIQUE_NAME"]').paletteColorPicker({
     colors: ["#0F8DFC","rgba(135,1,101)","#F00285","hsla(190,41%,95%,1)"]
@@ -47,8 +50,18 @@ $(document).ready(function(){
 # All available settings
 ```javascript
 $(document).ready(function(){
+  // Advanced exacmple
   $('[name="UNIQUE_NAME"]').paletteColorPicker({
-    colors: ["#0F8DFC","#ED8074","#788364"],
+    // Color in { key: value } format
+    colors: [
+      {"primary": "#E91E63"},
+      {"primary_dark": "#C2185B"},
+      {"primary_light": "#F8BBD0"},
+      {"accent": "#CDDC39"},
+      {"primary_text": "#212121"},
+      {"secondary_text": "#727272"},
+      {"divider": "#B6B6B6"}
+    ],
     // Add custom class to the picker
     custom_class: 'double',
     // Force the position of picker's bubble

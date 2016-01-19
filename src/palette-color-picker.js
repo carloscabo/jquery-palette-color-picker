@@ -1,5 +1,5 @@
 /**
- * JQuery Palette Color Picker v1.0 by Carlos Cabo ( @putuko )
+ * JQuery Palette Color Picker v1.01 by Carlos Cabo ( @putuko )
  * https://github.com/carloscabo/jquery-palette-color-picker
  */
 (function($) {
@@ -13,7 +13,7 @@
       $el = $(el),
       plugin = this,
       timer = null,
-      current_color = $el.val(),
+      current_value = $el.val(),
       target = $el.attr('name'),
       $button = $('<div>')
                   .addClass(ns+'-button')
@@ -37,7 +37,7 @@
       // Extand settings with user options
       plugin.settings = $.extend({}, defaults, options);
 
-      // If color were not passed as options get them from data-palette
+      // If color were not passed as options get them from data-palette attribute
       if (plugin.settings.colors === null) {
         plugin.settings.colors = $el.data('palette');
       }
@@ -60,14 +60,18 @@
       // Create color swatches
       $.each( plugin.settings.colors, function( idx, obj ) {
         var
-          key = Object.keys( obj ),
+          key = Object.keys( obj )[0],
           col = obj[key],
           $sw = $('<span>').addClass('swatch')
-            .attr('title', key)
-            .attr('data-color', col)
-            .css('background-color', col);
+            .attr({
+              'title': key,
+              'data-color': col,
+              'data-name': key
+            }).css('background-color', col);
 
-        if ( col === current_color ) {
+
+        // console.log(key + '===' +  current_value + ' - > '+(key === current_value)+' - t -'+(typeof key)+' '+(typeof current_value));
+        if ( key === current_value ) {
           $sw.addClass('active');
           $button.css('background', col);
         }
@@ -119,25 +123,25 @@
       // Click on swatches
       .on('click', 'span.swatch', function(e){
         var
-          color = $( this ).attr('data-color'),
+          col = $( this ).attr('data-color'),
+          name = $( this ).attr('data-name'),
           // Select all button in document with same data target to keep them synconized
           $button = $('.'+ns+'-button[data-target="' + $( this ).closest( '.'+ns+'-button' ).attr('data-target') + '"]'),
           $bubble = $( this ).closest( '.'+ns+'-bubble' );
 
         // console.log('.'+ns+'-button [data-target="' + $( this ).closest( '.'+ns+'-button' ).attr('data-target') + '"]');
-
         $bubble.find('.active').removeClass('active');
 
         // Set background on color
         // User clicked in the clear swatch
         if ( $(e.target).is('.clear') ) {
           $button.removeAttr('style');
-          color = '';
+          col = '';
         } else {
           $(this).addClass('active');
-          $button.css('background', color);
+          $button.css('background', col);
         }
-        $( '[name="'+$button.attr('data-target')+'"]' ).val( color );
+        $( '[name="'+$button.attr('data-target')+'"]' ).val( name );
       })['insert'+plugin.settings.insert]( $el );
 
       // Upside / downside, default is upside
