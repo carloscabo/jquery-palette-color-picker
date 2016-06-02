@@ -44,7 +44,7 @@ Additionally you can set the color palette in the options for the plugin initial
 // Basic usage, array of color values
 $(document).ready(function(){
   $('[name="UNIQUE_NAME"]').paletteColorPicker({
-    colors: ["#0F8DFC","rgba(135,1,101)","#F00285","hsla(190,41%,95%,1)"]
+    colors: ["#0F8DFC","rgba(135,1,101,1)","#F00285","hsla(190,41%,95%,1)"]
   });
 });
 ```
@@ -71,7 +71,7 @@ $(document).ready(function(){
     // Where is inserted the color picker's button, related to the input
     insert: 'after', // default -> 'before'
     // Clear button on last position
-    clear_btn: 'last' // default -> 'first'
+    clear_btn: 'last', // default -> 'first'
     // Timeout for the picker's fade out in ms
     timeout: 2000 // default -> 2000
   });
