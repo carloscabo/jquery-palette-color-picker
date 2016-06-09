@@ -83,3 +83,6 @@ $(document).ready(function(){
 ```javascript
 $( input_element ).data('paletteColorPickerPlugin').destroy();
 ```
+
+# Changelog
+* V.1.02 (2016/06/08) Improved iOS / Android click / touch behaviour

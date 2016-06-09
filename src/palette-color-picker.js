@@ -1,5 +1,5 @@
 /**
- * JQuery Palette Color Picker v1.01 by Carlos Cabo ( @putuko )
+ * JQuery Palette Color Picker v1.02 by Carlos Cabo ( @putuko )
  * https://github.com/carloscabo/jquery-palette-color-picker
  */
 (function($) {
@@ -30,7 +30,8 @@
         insert: 'before',    // default
         clear_btn: 'first',  // default
         timeout: 2000        // default
-      };
+      },
+      click_handler = ('ontouchstart' in document.documentElement ? 'touchstart' : 'click');
 
     // Init
     plugin.init = function() {
@@ -96,7 +97,9 @@
 
       // Events
       // Simple click
-      $button.append( $bubble ).on('click', function(){
+      $button.append( $bubble ).on( click_handler, function(e){
+        e.preventDefault();
+        e.stopPropagation();
         var $b = $( this );
         $b.toggleClass('active').find('.'+ns+'-bubble').fadeToggle();
         if ($b.hasClass('active')) {
@@ -121,7 +124,9 @@
         }, plugin.settings.timeout);
       })
       // Click on swatches
-      .on('click', 'span.swatch', function(e){
+      .on( click_handler, 'span.swatch', function(e){
+        e.preventDefault();
+        e.stopPropagation();
         var
           col = $( this ).attr('data-color'),
           name = $( this ).attr('data-name'),
