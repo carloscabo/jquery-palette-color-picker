@@ -1,5 +1,5 @@
 /**
- * JQuery Palette Color Picker v1.02 by Carlos Cabo ( @putuko )
+ * JQuery Palette Color Picker v1.03 by Carlos Cabo ( @putuko )
  * https://github.com/carloscabo/jquery-palette-color-picker
  */
 (function($) {
@@ -38,6 +38,17 @@
       // Extand settings with user options
       plugin.settings = $.extend({}, defaults, options);
 
+      // If input has not value add it
+      var
+        val = $el.attr('value');
+      if (typeof val === typeof undefined || val === false) {
+        val = '';
+        $el.attr('value', val);
+      }
+
+      // Backup initial value
+      $el.attr('data-initialvalue', $el.attr('value') );
+
       // If color were not passed as options get them from data-palette attribute
       if (plugin.settings.colors === null) {
         plugin.settings.colors = $el.data('palette');
@@ -70,8 +81,6 @@
               'data-name': key
             }).css('background-color', col);
 
-
-        // console.log(key + '===' +  current_value + ' - > '+(key === current_value)+' - t -'+(typeof key)+' '+(typeof current_value));
         if ( key === current_value ) {
           $sw.addClass('active');
           $button.css('background', col);
@@ -80,19 +89,40 @@
         $sw.appendTo( $bubble );
       });
 
-      // Create clear button
-      var
+      // Create clear button if not null
+      if (plugin.settings.clear_btn !== null) {
+        var
         $clear_btn = $('<span>').addClass('swatch clear').attr('title', 'Clear selection');
-      if (plugin.settings.clear_btn === 'last') {
-        $clear_btn.addClass('last').appendTo( $bubble );
-      } else {
-        $clear_btn.prependTo( $bubble );
+        if (plugin.settings.clear_btn === 'last') {
+          $clear_btn.addClass('last').appendTo( $bubble );
+        } else {
+          $clear_btn.prependTo( $bubble );
+        }
       }
 
       // Public
       plugin.destroy = function() {
         $button.remove();
         $.removeData( $el[0] );
+      };
+
+      // Clears all
+      plugin.clear = function() {
+        $bubble.find('.active').removeClass('active');
+        $button.removeAttr('style');
+        $el.val('');
+      };
+
+      // Reset to initial value
+      plugin.reset = function() {
+        // Dont had initial value
+        if (  $el.attr('data-initialvalue') === '' ) {
+          plugin.clear();
+        } else {
+          // Had initial value
+          var iv = $el.attr('data-initialvalue');
+          $bubble.find('[data-name="'+iv+'"]').trigger('click');
+        }
       };
 
       // Events

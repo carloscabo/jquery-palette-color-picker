@@ -35,5 +35,27 @@ $(document).ready(function(){
     clear_btn: 'last'
   });
 
+  // Sample 6A
+  $('#unique-id-6A').paletteColorPicker({
+    colors: ['#D50000','#304FFE','#00B8D4','#69F0AE','#FFFF00','#F8BBD0'],
+    clear_btn: null
+  });
+  // Reset sample 6A
+  $('.clear-sample-6A').on('click', function(e) {
+    e.preventDefault();
+    $('#unique-id-6A').data('paletteColorPickerPlugin').reset();
+  });
+
+  // Sample 6B
+  $('#unique-id-6B').paletteColorPicker({
+    colors: ['#D50000','#304FFE','#00B8D4','#69F0AE','#FFFF00','#F8BBD0'],
+    clear_btn: null
+  });
+  // Reset sample 6B
+  $('.clear-sample-6B').on('click', function(e) {
+    e.preventDefault();
+    $('#unique-id-6B').data('paletteColorPickerPlugin').reset();
+  });
+
 
 });

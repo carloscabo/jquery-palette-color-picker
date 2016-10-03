@@ -70,8 +70,8 @@ $(document).ready(function(){
     position: 'downside', // default -> 'upside'
     // Where is inserted the color picker's button, related to the input
     insert: 'after', // default -> 'before'
-    // Clear button on last position
-    clear_btn: 'last', // default -> 'first'
+    // Don't add clear_btn
+    clear_btn: 'last', // 'last', default -> 'first'
     // Timeout for the picker's fade out in ms
     timeout: 2000 // default -> 2000
   });
@@ -84,5 +84,22 @@ $(document).ready(function(){
 $( input_element ).data('paletteColorPickerPlugin').destroy();
 ```
 
+# Clear
+
+Clear current control and value of related input.
+
+```javascript
+$( input_element ).data('paletteColorPickerPlugin').clear();
+```
+
+# Reset to inital state
+
+Resets the color picker (and its related input field) to the initial value it had when it was initialized.
+
+```javascript
+$( input_element ).data('paletteColorPickerPlugin').reset();
+```
+
 # Changelog
+* V.1.03 (2016/10/03) Added option to disable clear button, added methods to reset and celar plugin
 * V.1.02 (2016/06/08) Improved iOS / Android click / touch behaviour
