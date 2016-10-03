@@ -71,7 +71,7 @@ $(document).ready(function(){
     // Where is inserted the color picker's button, related to the input
     insert: 'after', // default -> 'before'
     // Don't add clear_btn
-    clear_btn: 'last', // 'last', default -> 'first'
+    clear_btn: 'last', // null -> without clear button, default -> 'first'
     // Timeout for the picker's fade out in ms
     timeout: 2000 // default -> 2000
   });
