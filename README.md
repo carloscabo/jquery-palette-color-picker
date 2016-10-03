@@ -101,5 +101,5 @@ $( input_element ).data('paletteColorPickerPlugin').reset();
 ```
 
 # Changelog
-* V.1.03 (2016/10/03) Added option to disable clear button, added methods to reset and celar plugin
+* V.1.03 (2016/10/03) Added option to **disable clear button**, added methods to **reset** and **clear** plugin
 * V.1.02 (2016/06/08) Improved iOS / Android click / touch behaviour
