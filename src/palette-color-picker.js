@@ -178,7 +178,7 @@
           $button.css('background', col);
         }
 
-        if( plugin.settings.clear_btn == false ) {
+        if( plugin.settings.set_background == false ) {
             $('[name="' + $button.attr('data-target') + '"]').val(name);
         } else {
             $('[name="' + $button.attr('data-target') + '"]').css({'background-color' : col});
