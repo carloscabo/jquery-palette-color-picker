@@ -131,12 +131,15 @@
         e.preventDefault();
         e.stopPropagation();
         var $b = $( this );
-        $b.toggleClass('active').find('.'+ns+'-bubble').fadeToggle();
-        if ($b.hasClass('active')) {
-          clearTimeout(plugin.timer);
-          plugin.timer = setTimeout(function(){
-            $b.trigger('pcp.fadeout');
-          }, plugin.settings.timeout);
+        //don't close on clicking the bubble
+        if (!$(event.target).hasClass(ns+'-bubble')) {
+          $b.toggleClass('active').find('.'+ns+'-bubble').fadeToggle();
+          if ($b.hasClass('active')) {
+            clearTimeout(plugin.timer);
+            plugin.timer = setTimeout(function(){
+              $b.trigger('pcp.fadeout');
+            }, plugin.settings.timeout);
+          }
         }
       })
       // Fade timer
@@ -189,6 +192,13 @@
       }
 
     };
+
+    // Close on clicking outside the palette
+    $("body").on(click_handler,function(event) {
+      if (!$(event.target).hasClass(ns+'-button')) {
+        $( $button ).removeClass('active').find('.'+ns+'-bubble').fadeOut();
+      }
+    });
 
     // Start
     plugin.init();
