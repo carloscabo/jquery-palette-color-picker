@@ -177,6 +177,10 @@
           $button.css('background', col);
         }
         $( '[name="'+$button.attr('data-target')+'"]' ).val( name );
+        // Call the callback, if set
+        if (typeof plugin.settings.onchange_callback == "function") {
+          plugin.settings.onchange_callback();
+        }
       })['insert'+plugin.settings.insert]( $el );
 
       // Upside / downside, default is upside
