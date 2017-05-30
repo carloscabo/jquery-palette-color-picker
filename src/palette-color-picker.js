@@ -31,7 +31,7 @@
         clear_btn: 'first',  // default
         timeout: 2000        // default
       },
-      click_handler = ('ontouchstart' in document.documentElement ? 'touchstart' : 'click');
+      click_handler = ('ontouchstart' in document.documentElement ? 'touchstart click' : 'click');
 
     // Init
     plugin.init = function() {
