@@ -41,7 +41,7 @@
 
   </style>
 
-  <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js"></script>
   <script src="src/palette-color-picker.js"></script>
   <script src="ready.js"></script>
 </head>
@@ -84,6 +84,13 @@
       <input type="text" id="unique-id-6B" name="unique-name-6B" value="#FFFF00">
       <p>Without <b>clear button</b>, you can clear the selection programatically calling:<br><br><b>$( input_element ).data('paletteColorPickerPlugin').reset();</b><br><br>
       <a href="#" class="clear-sample-6A">Reset sample 6A</a> | <a href="#" class="clear-sample-6B">Reset sample 6B</a></p>
+    </div>
+    
+    <div class="row">
+      <h3>Sample 7</h3>
+      <input type="text" id="unique-id-7" name="unique-name-7" value="#FFFF00">
+      <p>Reload the value after it has been chagned programatically. The new color should exists in the initial options otherwise the selection will be reset to default value.You can reload the value after programatically changing the value of input calling:<br><br><b>$( input_element ).data('paletteColorPickerPlugin').reload();</b><br><br>
+      <a href="#" class="change-sample-7">Change to existing value of #69F0AE</a> | <a href="#" class="change-sample-7B">Change to non-existing value of #808080 (will reset to initial value)</a></p>
     </div>
 
 </body>
