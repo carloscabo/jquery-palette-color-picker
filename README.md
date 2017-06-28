@@ -73,7 +73,11 @@ $(document).ready(function(){
     // Don't add clear_btn
     clear_btn: 'last', // null -> without clear button, default -> 'first'
     // Timeout for the picker's fade out in ms
-    timeout: 2000 // default -> 2000
+    timeout: 2000, // default -> 2000
+    // callback on change value
+    onchange_callback: function( obj ) {
+      console.log(obj);
+    }
   });
 });
 ```

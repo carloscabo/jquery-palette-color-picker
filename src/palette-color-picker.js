@@ -135,13 +135,10 @@
           plugin.reset();
         } else {
           // setting the value to new value
-          if($bubble.find('[data-name="'+newVal+'"]').length)
-          {
+          if($bubble.find('[data-name="'+newVal+'"]').length) {
             // value will only be set if the color exists in options
             $bubble.find('[data-name="'+newVal+'"]').trigger('click');
-          }
-          else
-          {
+          } else {
             // setting to the initial value if color doesnot exists
             plugin.reset();
           }
@@ -204,8 +201,8 @@
         }
 
         // Call the callback, if set
-        if (typeof plugin.settings.onchange_callback == "function") {
-          plugin.settings.onchange_callback();
+        if (typeof plugin.settings.onchange_callback === "function") {
+          plugin.settings.onchange_callback( plugin );
         }
 
         if( plugin.settings.set_background === false ) {
