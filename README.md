@@ -100,6 +100,14 @@ Resets the color picker (and its related input field) to the initial value it ha
 $( input_element ).data('paletteColorPickerPlugin').reset();
 ```
 
+# Reload the value after it has been changed programatically
+
+The new color should exists in the initial options otherwise the selection will be reset to initial value.
+
+```javascript
+$( input_element ).data('paletteColorPickerPlugin').reload();
+```
+
 # Changelog
 * V.1.03 (2016/10/03) Added option to **disable clear button**, added methods to **reset** and **clear** plugin
 * V.1.02 (2016/06/08) Improved iOS / Android click / touch behaviour

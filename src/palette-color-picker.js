@@ -125,6 +125,28 @@
           $bubble.find('[data-name="'+iv+'"]').trigger('click');
         }
       };
+      
+      // reload value after it has been changed programatically
+      plugin.reload = function() {
+        
+        var newVal = $el.val();
+        if (  newVal === '' || typeof newVal === typeof undefined || newVal === false ) {
+          // Doesn't have the value to load so loading initial value
+          plugin.reset();
+        } else {
+          // setting the value to new value
+          if($bubble.find('[data-name="'+newVal+'"]').length)
+          {
+            // value will only be set if the color exists in options
+            $bubble.find('[data-name="'+newVal+'"]').trigger('click');  
+          }
+          else
+          {
+            // setting to the initial value if color doesnot exists
+            plugin.reset();
+          }
+        }
+      };
 
       // Events
       // Simple click
