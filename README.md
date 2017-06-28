@@ -75,8 +75,8 @@ $(document).ready(function(){
     // Timeout for the picker's fade out in ms
     timeout: 2000, // default -> 2000
     // callback on change value
-    onchange_callback: function( obj ) {
-      console.log(obj);
+    onchange_callback: function( clicked_color ) {
+      console.log(clicked_color);
     }
   });
 });

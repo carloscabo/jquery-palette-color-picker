@@ -13,8 +13,8 @@ $(document).ready(function(){
   $('#unique-id').paletteColorPicker({
     custom_class: 'double',
     insert: 'after', // default -> 'before'
-    onchange_callback: function (obj) {
-      console.log(obj);
+    onchange_callback: function ( clicked_color ) {
+      console.log( clicked_color );
     }
   });
 

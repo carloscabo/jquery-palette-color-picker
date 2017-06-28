@@ -20,18 +20,21 @@
                   .attr('data-target', target),
       $bubble = $('<div>')
                   .addClass(ns+'-bubble'),
+
       // Final settings will be stored here
       settings = {},
+
       // Default settings
       defaults = {
         custom_class: null,
         colors: null,
-        position: 'upside',  // upside | downside
-        insert: 'before',    // default
-        clear_btn: 'first',  // default
+        position: 'upside',   // upside | downside
+        insert: 'before',     // default
+        clear_btn: 'first',   // default
         timeout: 2000,        // default
         set_background: false
       },
+
       click_handler = ('ontouchstart' in document.documentElement ? 'touchstart click' : 'click');
 
     // Init
@@ -139,7 +142,7 @@
             // value will only be set if the color exists in options
             $bubble.find('[data-name="'+newVal+'"]').trigger('click');
           } else {
-            // setting to the initial value if color doesnot exists
+            // setting to the initial value if color does not exists
             plugin.reset();
           }
         }
@@ -202,7 +205,7 @@
 
         // Call the callback, if set
         if (typeof plugin.settings.onchange_callback === "function") {
-          plugin.settings.onchange_callback( plugin );
+          plugin.settings.onchange_callback( this );
         }
 
         if( plugin.settings.set_background === false ) {
