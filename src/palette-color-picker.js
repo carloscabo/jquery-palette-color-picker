@@ -1,5 +1,5 @@
 /*!
- * JQuery Palette Color Picker v1.10 by Carlos Cabo ( @putuko )
+ * JQuery Palette Color Picker v1.12 by Carlos Cabo ( @putuko )
  * https://github.com/carloscabo/jquery-palette-color-picker
  */
 (function($) {
@@ -32,7 +32,8 @@
         insert: 'before',     // default
         clear_btn: 'first',   // default
         timeout: 2000,        // default
-        set_background: false
+        set_background: false, // default
+        close_all_but_this: false // default
       },
 
       click_handler = ('ontouchstart' in document.documentElement ? 'touchstart click' : 'click');
@@ -120,7 +121,7 @@
       // Reset to initial value
       plugin.reset = function() {
         // Dont had initial value
-        if (  $el.attr('data-initialvalue') === '' ) {
+        if ( $el.attr('data-initialvalue') === '' ) {
           plugin.clear();
         } else {
           // Had initial value
@@ -154,9 +155,21 @@
         e.preventDefault();
         e.stopPropagation();
         var $b = $( this );
-        //don't close on clicking the bubble
+        // don't close on clicking the bubble
         if (!$(event.target).hasClass(ns+'-bubble')) {
-          $b.toggleClass('active').find('.'+ns+'-bubble').fadeToggle();
+
+          // Call the callback, if set
+          if (typeof plugin.settings.onbeforeshow_callback === 'function') {
+            plugin.settings.onbeforeshow_callback(this);
+          }
+
+          $b.toggleClass('active');
+          var $current_bubble = $b.find('.'+ns+'-bubble');
+          // Forces hiding other bubbles
+          if (plugin.settings.close_all_but_this) {
+            $('.'+ns+'-bubble').not($current_bubble).fadeOut();
+          }
+          $current_bubble.fadeToggle();
           if ($b.hasClass('active')) {
             clearTimeout(plugin.timer);
             plugin.timer = setTimeout(function(){
@@ -180,7 +193,7 @@
         }, plugin.settings.timeout);
       })
       // Click on swatches
-      .on( click_handler, 'span.swatch', function(e){
+      .on(click_handler, '.'+ns+'-bubble span.swatch', function(e){
         e.preventDefault();
         e.stopPropagation();
         var
@@ -204,7 +217,7 @@
         }
 
         // Call the callback, if set
-        if (typeof plugin.settings.onchange_callback === "function") {
+        if (typeof plugin.settings.onchange_callback === 'function') {
           plugin.settings.onchange_callback( this );
         }
 
@@ -223,7 +236,7 @@
     };
 
     // Close on clicking outside the palette
-    $("body").on(click_handler,function(event) {
+    $('body').on(click_handler,function(event) {
       if (!$(event.target).hasClass(ns+'-button')) {
         $( $button ).removeClass('active').find('.'+ns+'-bubble').fadeOut();
       }
