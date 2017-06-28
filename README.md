@@ -7,8 +7,8 @@ JS component to pick colors from a predefined / restricted palette. <mark>Take a
 
 # Requirements
 
-`JQuery 1.7+`  
-`palette-color-picker.js`  
+`JQuery 1.7+`
+`palette-color-picker.js`
 `palette-color-picker.css / scss`
 
 # Basic usage
@@ -109,5 +109,12 @@ $( input_element ).data('paletteColorPickerPlugin').reload();
 ```
 
 # Changelog
+* V.1.10 (2017/06/28) Improvements by several people, thx!
+  * [slavede](https://github.com/slavede) Added bower.json
+  * [eafarooqi](https://github.com/eafarooqi) Reload value after programatically update
+  * [wirthm](https://github.com/wirthm) Allow touch and click events simultaneously
+  * [evalibantova](https://github.com/) Callback feature and better closing
+  * [kleber099](https://github.com/kleber099) Add option of set background color select in input
+  * [Desprit](https://github.com/Desprit) Fix rgba typo and comma
 * V.1.03 (2016/10/03) Added option to **disable clear button**, added methods to **reset** and **clear** plugin
 * V.1.02 (2016/06/08) Improved iOS / Android click / touch behaviour
