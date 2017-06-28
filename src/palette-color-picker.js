@@ -29,9 +29,10 @@
         position: 'upside',  // upside | downside
         insert: 'before',    // default
         clear_btn: 'first',  // default
-        timeout: 2000        // default
+        timeout: 2000,        // default
+        set_background: false
       },
-      click_handler = ('ontouchstart' in document.documentElement ? 'touchstart' : 'click');
+      click_handler = ('ontouchstart' in document.documentElement ? 'touchstart click' : 'click');
 
     // Init
     plugin.init = function() {
@@ -179,10 +180,16 @@
           $(this).addClass('active');
           $button.css('background', col);
         }
-        $( '[name="'+$button.attr('data-target')+'"]' ).val( name );
+
         // Call the callback, if set
         if (typeof plugin.settings.onchange_callback == "function") {
           plugin.settings.onchange_callback();
+        }
+
+        if( plugin.settings.set_background == false ) {
+          $('[name="' + $button.attr('data-target') + '"]').val(name);
+        } else {
+          $('[name="' + $button.attr('data-target') + '"]').css({'background-color' : col});
         }
       })['insert'+plugin.settings.insert]( $el );
 
