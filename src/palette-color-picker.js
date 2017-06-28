@@ -132,12 +132,15 @@
         e.preventDefault();
         e.stopPropagation();
         var $b = $( this );
-        $b.toggleClass('active').find('.'+ns+'-bubble').fadeToggle();
-        if ($b.hasClass('active')) {
-          clearTimeout(plugin.timer);
-          plugin.timer = setTimeout(function(){
-            $b.trigger('pcp.fadeout');
-          }, plugin.settings.timeout);
+        //don't close on clicking the bubble
+        if (!$(event.target).hasClass(ns+'-bubble')) {
+          $b.toggleClass('active').find('.'+ns+'-bubble').fadeToggle();
+          if ($b.hasClass('active')) {
+            clearTimeout(plugin.timer);
+            plugin.timer = setTimeout(function(){
+              $b.trigger('pcp.fadeout');
+            }, plugin.settings.timeout);
+          }
         }
       })
       // Fade timer
@@ -178,10 +181,15 @@
           $button.css('background', col);
         }
 
+        // Call the callback, if set
+        if (typeof plugin.settings.onchange_callback == "function") {
+          plugin.settings.onchange_callback();
+        }
+
         if( plugin.settings.set_background == false ) {
-            $('[name="' + $button.attr('data-target') + '"]').val(name);
+          $('[name="' + $button.attr('data-target') + '"]').val(name);
         } else {
-            $('[name="' + $button.attr('data-target') + '"]').css({'background-color' : col});
+          $('[name="' + $button.attr('data-target') + '"]').css({'background-color' : col});
         }
       })['insert'+plugin.settings.insert]( $el );
 
@@ -191,6 +199,13 @@
       }
 
     };
+
+    // Close on clicking outside the palette
+    $("body").on(click_handler,function(event) {
+      if (!$(event.target).hasClass(ns+'-button')) {
+        $( $button ).removeClass('active').find('.'+ns+'-bubble').fadeOut();
+      }
+    });
 
     // Start
     plugin.init();
