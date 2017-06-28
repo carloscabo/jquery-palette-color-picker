@@ -1,0 +1,25 @@
+{
+  "name": "jquery-palette-color-picker",
+  "authors": [
+    "Slaven Tomac <slaven.tomac@gmail.com>",
+    "Carlos Cabo <carloscabo@gmail.com>"
+  ],
+  "description": "JS component to pick colors from a predefined palette Edit",
+  "main": ["./src/palette-color-picker.min.js", "./src/palette-color-picker.css"],
+  "keywords": [
+    "colorpicker",
+    "color",
+    "jquery",
+    "predefined",
+    "colors"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/carloscabo/jquery-palette-color-picker",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
