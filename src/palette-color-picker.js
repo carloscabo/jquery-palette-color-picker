@@ -1,5 +1,5 @@
-/**
- * JQuery Palette Color Picker v1.03 by Carlos Cabo ( @putuko )
+/*!
+ * JQuery Palette Color Picker v1.10 by Carlos Cabo ( @putuko )
  * https://github.com/carloscabo/jquery-palette-color-picker
  */
 (function($) {
@@ -125,10 +125,10 @@
           $bubble.find('[data-name="'+iv+'"]').trigger('click');
         }
       };
-      
+
       // reload value after it has been changed programatically
       plugin.reload = function() {
-        
+
         var newVal = $el.val();
         if (  newVal === '' || typeof newVal === typeof undefined || newVal === false ) {
           // Doesn't have the value to load so loading initial value
@@ -138,7 +138,7 @@
           if($bubble.find('[data-name="'+newVal+'"]').length)
           {
             // value will only be set if the color exists in options
-            $bubble.find('[data-name="'+newVal+'"]').trigger('click');  
+            $bubble.find('[data-name="'+newVal+'"]').trigger('click');
           }
           else
           {
@@ -208,7 +208,7 @@
           plugin.settings.onchange_callback();
         }
 
-        if( plugin.settings.set_background == false ) {
+        if( plugin.settings.set_background === false ) {
           $('[name="' + $button.attr('data-target') + '"]').val(name);
         } else {
           $('[name="' + $button.attr('data-target') + '"]').css({'background-color' : col});
