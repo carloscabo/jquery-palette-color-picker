@@ -143,4 +143,13 @@ $cpfp-background: #fff;
     }
   }
 
+  // Force open on left side
+  &.force-left {
+    left: -178px;
+    &:after,
+    &:before {
+      left: 188px;
+    }
+  }
+
 }

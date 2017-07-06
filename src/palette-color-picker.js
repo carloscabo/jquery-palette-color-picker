@@ -1,5 +1,5 @@
-/**
- * JQuery Palette Color Picker v1.03 by Carlos Cabo ( @putuko )
+/*!
+ * JQuery Palette Color Picker v1.13 by Carlos Cabo ( @putuko )
  * https://github.com/carloscabo/jquery-palette-color-picker
  */
 (function($) {
@@ -20,18 +20,22 @@
                   .attr('data-target', target),
       $bubble = $('<div>')
                   .addClass(ns+'-bubble'),
+
       // Final settings will be stored here
       settings = {},
+
       // Default settings
       defaults = {
         custom_class: null,
         colors: null,
-        position: 'upside',  // upside | downside
-        insert: 'before',    // default
-        clear_btn: 'first',  // default
+        position: 'upside',   // upside | downside
+        insert: 'before',     // default
+        clear_btn: 'first',   // default
         timeout: 2000,        // default
-        set_background: false
+        set_background: false, // default
+        close_all_but_this: false // default
       },
+
       click_handler = ('ontouchstart' in document.documentElement ? 'touchstart click' : 'click');
 
     // Init
@@ -117,7 +121,7 @@
       // Reset to initial value
       plugin.reset = function() {
         // Dont had initial value
-        if (  $el.attr('data-initialvalue') === '' ) {
+        if ( $el.attr('data-initialvalue') === '' ) {
           plugin.clear();
         } else {
           // Had initial value
@@ -125,24 +129,21 @@
           $bubble.find('[data-name="'+iv+'"]').trigger('click');
         }
       };
-      
+
       // reload value after it has been changed programatically
       plugin.reload = function() {
-        
+
         var newVal = $el.val();
         if (  newVal === '' || typeof newVal === typeof undefined || newVal === false ) {
           // Doesn't have the value to load so loading initial value
           plugin.reset();
         } else {
           // setting the value to new value
-          if($bubble.find('[data-name="'+newVal+'"]').length)
-          {
+          if($bubble.find('[data-name="'+newVal+'"]').length) {
             // value will only be set if the color exists in options
-            $bubble.find('[data-name="'+newVal+'"]').trigger('click');  
-          }
-          else
-          {
-            // setting to the initial value if color doesnot exists
+            $bubble.find('[data-name="'+newVal+'"]').trigger('click');
+          } else {
+            // setting to the initial value if color does not exists
             plugin.reset();
           }
         }
@@ -154,9 +155,23 @@
         e.preventDefault();
         e.stopPropagation();
         var $b = $( this );
-        //don't close on clicking the bubble
+
+        // don't close on clicking the bubble
         if (!$(e.target).hasClass(ns+'-bubble')) {
-          $b.toggleClass('active').find('.'+ns+'-bubble').fadeToggle();
+
+          // Call the callback, if set
+          if (typeof plugin.settings.onbeforeshow_callback === 'function') {
+            plugin.settings.onbeforeshow_callback(this);
+          }
+
+          $b.toggleClass('active');
+          var $current_bubble = $b.find('.'+ns+'-bubble');
+          // Forces hiding other bubbles
+          if (plugin.settings.close_all_but_this) {
+            $('.'+ns+'-bubble').not($current_bubble).fadeOut();
+          }
+          $current_bubble.fadeToggle();
+
           if ($b.hasClass('active')) {
             clearTimeout(plugin.timer);
             plugin.timer = setTimeout(function(){
@@ -180,7 +195,7 @@
         }, plugin.settings.timeout);
       })
       // Click on swatches
-      .on( click_handler, 'span.swatch', function(e){
+      .on(click_handler, '.'+ns+'-bubble span.swatch', function(e){
         e.preventDefault();
         e.stopPropagation();
         var
@@ -204,11 +219,11 @@
         }
 
         // Call the callback, if set
-        if (typeof plugin.settings.onchange_callback == "function") {
+        if (typeof plugin.settings.onchange_callback === "function") {
           plugin.settings.onchange_callback(col);
         }
 
-        if( plugin.settings.set_background == false ) {
+        if( plugin.settings.set_background === false ) {
           $('[name="' + $button.attr('data-target') + '"]').val(name);
         } else {
           $('[name="' + $button.attr('data-target') + '"]').css({'background-color' : col});
@@ -223,7 +238,7 @@
     };
 
     // Close on clicking outside the palette
-    $("body").on(click_handler,function(event) {
+    $('body').on(click_handler,function(event) {
       if (!$(event.target).hasClass(ns+'-button')) {
         $( $button ).removeClass('active').find('.'+ns+'-bubble').fadeOut();
       }

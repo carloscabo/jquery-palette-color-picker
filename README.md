@@ -1,4 +1,4 @@
-# JQuery Palette Color Picker
+# JQuery Palette Color Picker v1.12
 JS component to pick colors from a predefined / restricted palette. <mark>Take a look to the `demo.html` included in this repository to see it in action.</mark>
 
 ![Snapshot](https://raw.githubusercontent.com/carloscabo/jquery-palette-color-picker/master/img/snapshot.png)
@@ -7,8 +7,8 @@ JS component to pick colors from a predefined / restricted palette. <mark>Take a
 
 # Requirements
 
-`JQuery 1.7+`  
-`palette-color-picker.js`  
+`JQuery 1.7+`
+`palette-color-picker.js`
 `palette-color-picker.css / scss`
 
 # Basic usage
@@ -73,7 +73,23 @@ $(document).ready(function(){
     // Don't add clear_btn
     clear_btn: 'last', // null -> without clear button, default -> 'first'
     // Timeout for the picker's fade out in ms
-    timeout: 2000 // default -> 2000
+    timeout: 2000, // default -> 2000
+    // Forces closin all bubbles that are open before opening the current one
+    close_all_but_this: false, // default is false
+    // Sets the input's background color to the selected one on click
+    // seems that some users find this useful ;)
+    set_background: false, // default is false
+
+    // Events
+    // Callback on bubbl show
+    onbeforeshow_callback: function( what ) {
+      console.log(what);
+    },
+
+    // Callback on change value
+    onchange_callback: function( clicked_color ) {
+      console.log(clicked_color);
+    }
   });
 });
 ```
@@ -100,6 +116,32 @@ Resets the color picker (and its related input field) to the initial value it ha
 $( input_element ).data('paletteColorPickerPlugin').reset();
 ```
 
+# Callback functions
+
+Define your own callback function that will be fired when a color swatch its clicked. Returns the color swatch item itlsef.
+
+```javascript
+$( input_element ).paletteColorPicker({
+  onchange_callback: function ( clicked_color ) {
+    console.log( 'onchange_callback!!!' );
+    console.log( $(clicked_color) );
+    console.log( clicked_color );
+  }
+});
+```
+
+There is an aditional callback is fired **right before the color's bubble is shwon**.
+
+```javascript
+$( input_element ).paletteColorPicker({
+  onbeforeshow_callback: function ( color_picker_button ) {
+    console.log( 'onbeforeshow_callback!!!' );
+    console.log( $(color_picker_button) );
+    console.log( color_picker_button );
+  }
+});
+```
+
 # Reload the value after it has been changed programatically
 
 The new color should exists in the initial options otherwise the selection will be reset to initial value.
@@ -109,5 +151,17 @@ $( input_element ).data('paletteColorPickerPlugin').reload();
 ```
 
 # Changelog
+* V.1.12 (2017/06/27) New features
+  * close_all_but_this
+  * onbeforeshow_callback()
+  * Style to force bubble to be shown on left side
+  * More samples
+* V.1.10 (2017/06/27) Some improvements by several people, thx!
+  * [slavede](https://github.com/slavede) Added bower.json
+  * [eafarooqi](https://github.com/eafarooqi) Reload value after programatically update
+  * [wirthm](https://github.com/wirthm) Allow touch and click events simultaneously
+  * [evalibantova](https://github.com/) Callback feature and better closing
+  * [kleber099](https://github.com/kleber099) Add option of set background color select in input
+  * [Desprit](https://github.com/Desprit) Fix rgba typo and comma
 * V.1.03 (2016/10/03) Added option to **disable clear button**, added methods to **reset** and **clear** plugin
 * V.1.02 (2016/06/08) Improved iOS / Android click / touch behaviour

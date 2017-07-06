@@ -41,56 +41,72 @@
 
   </style>
 
-  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js"></script>
+  <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js"></script>
   <script src="src/palette-color-picker.js"></script>
   <script src="ready.js"></script>
 </head>
 <body>
 
-    <div class="row">
+    <div class="row" id="sample-id-1">
       <h3>Sample 1</h3>
       <input type="text" name="unique-name-1" data-palette='[{"primary": "#E91E63"},{"primary_dark": "#C2185B"},{"primary_light": "#F8BBD0"},{"accent": "#CDDC39"},{"primary_text": "#212121"},{"secondary_text": "#727272"},{"divider": "#B6B6B6"}]' value="primary_light">
       <p>If there is not enough free space from the control to the upper side of the screen the selector <b>opens downwards automatically</b>.</p>
+      <p>This sample has also a callback function that <b>logs to the web broser console the color swatch clicked ( onchange_callback )</b> and also <b>just before the colors bubble is shown ( onbeforeshow_callback )</b></p>
     </div>
 
-    <div class="row">
+    <div class="row" id="sample-id-2">
       <h3>Sample 2</h3>
       <input type="text" name="duplicated-name-2" data-palette='["#D50000","#304FFE","#00B8D4","#00C853","#FFD600","#FF6D00","#FF1744","#3D5AFE","#00E5FF","#00E676","#FFEA00","#FF9100","#FF5252","#536DFE","#18FFFF","#69F0AE","#FFFF00","#FFAB40"]' value="" style="margin-right:48px;">
       <input type="text" name="duplicated-name-2" data-palette='["#D50000","#304FFE","#00B8D4","#00C853","#FFD600","#FF6D00","#FF1744","#3D5AFE","#00E5FF","#00E676","#FFEA00","#FF9100","#FF5252","#536DFE","#18FFFF","#69F0AE","#FFFF00","#FFAB40"]' value="">
       <p>If there are several inputs with the same name all all them are updated on color selection. In this sample the <b>clear button is set to be last one</b>.</p>
     </div>
 
-    <div class="row">
+    <div class="row" id="sample-id-3">
       <h3>Sample 3</h3>
-      <input type="text" id="unique-id" name="unique-name-3" data-palette='["#D50000","#304FFE","#00B8D4","#69F0AE","#FFFF00"]' value="#00B8D4">
-      <p>The control can be inserted <b>before or after</b> the input. You can also customize the style of the color swatches,<b> with the custom_class .double the swatches are wider</b>.</p>
+      <input type="text" id="unique-id-3" name="unique-name-3" data-palette='["#D50000","#304FFE","#00B8D4","#69F0AE","#FFFF00"]' value="#304FFE">
+      <p>The control can be inserted <b>before or after</b> the input. You can also customize the style of the color swatches,<b> with the custom_class .double the swatches are wider</b>.
     </div>
 
-    <div class="row">
+    <div class="row" id="sample-id-3b">
+      <h3>Sample 3B</h3>
+      <input type="text" id="unique-id-3b" name="unique-name-3b" data-palette='["#D50000","#304FFE","#00B8D4","#69F0AE","#FFFF00"]'
+        value="#00B8D4">
+      <p>The bubble is forced to the left side of the button adding the f<b>.force-left</b> class.</p>
+    </div>
+
+    <div class="row" id="sample-id-4">
       <h3>Sample 4</h3>
       <input type="text" id="unique-id-4" name="unique-name-4" value="accent">
       <p>In this sample the color palette is <b>forced to open downwards</b>.</p>
     </div>
 
-    <div class="row">
+    <div class="row" id="sample-id-5">
       <h3>Sample 5</h3>
       <input type="text" id="unique-id-5" name="unique-name-5" data-palette='["#D50000","#304FFE","#00B8D4"]' value="">
       <p>With tha custom_class <b>.wide</b> swatches expand to be fullwidth.</p>
     </div>
 
-    <div class="row">
+    <div class="row"  id="sample-id-6">
       <h3>Sample 6 A/B</h3>
       <input type="text" id="unique-id-6A" name="unique-name-6A">
       <input type="text" id="unique-id-6B" name="unique-name-6B" value="#FFFF00">
       <p>Without <b>clear button</b>, you can clear the selection programatically calling:<br><br><b>$( input_element ).data('paletteColorPickerPlugin').reset();</b><br><br>
       <a href="#" class="clear-sample-6A">Reset sample 6A</a> | <a href="#" class="clear-sample-6B">Reset sample 6B</a></p>
     </div>
-    
-    <div class="row">
+
+    <div class="row" id="sample-id-7">
       <h3>Sample 7</h3>
       <input type="text" id="unique-id-7" name="unique-name-7" value="#FFFF00">
       <p>Reload the value after it has been changed programatically. The new color should exists in the initial options otherwise the selection will be reset to initial value.You can reload the value after programatically changing the value of input calling:<br><br><b>$( input_element ).data('paletteColorPickerPlugin').reload();</b><br><br>
       <a href="#" class="change-sample-7">Change to existing value of #69F0AE</a> | <a href="#" class="change-sample-7B">Change to non-existing value of #808080 (will reset to initial value)</a></p>
+    </div>
+
+    <div class="row" id="sample-id-8">
+      <h3>Sample 8</h3>
+      <input type="text" id="unique-id-8" name="unique-name-8" data-palette='["#D50000","#304FFE","#00B8D4","#69F0AE","#FFFF00"]'
+        value="Changes bg color">
+      <p>This sample has the <b>set_background:true;</b> that sets the input's background color to the selected one. Seems that
+        some users find this useful ;)</p>
     </div>
 
 </body>
