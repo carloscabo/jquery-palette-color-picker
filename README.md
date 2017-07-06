@@ -1,4 +1,4 @@
-# JQuery Palette Color Picker v1.12
+# JQuery Palette Color Picker v1.13
 JS component to pick colors from a predefined / restricted palette. <mark>Take a look to the `demo.html` included in this repository to see it in action.</mark>
 
 ![Snapshot](https://raw.githubusercontent.com/carloscabo/jquery-palette-color-picker/master/img/snapshot.png)
@@ -151,6 +151,8 @@ $( input_element ).data('paletteColorPickerPlugin').reload();
 ```
 
 # Changelog
+* V.1.13 (2017/07/06) New features
+  * [eafarooqi](https://github.com/eafarooqi) Bugfix
 * V.1.12 (2017/06/27) New features
   * close_all_but_this
   * onbeforeshow_callback()
