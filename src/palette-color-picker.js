@@ -1,5 +1,5 @@
 /*!
- * JQuery Palette Color Picker v1.12 by Carlos Cabo ( @putuko )
+ * JQuery Palette Color Picker v1.13 by Carlos Cabo ( @putuko )
  * https://github.com/carloscabo/jquery-palette-color-picker
  */
 (function($) {
@@ -155,8 +155,9 @@
         e.preventDefault();
         e.stopPropagation();
         var $b = $( this );
+
         // don't close on clicking the bubble
-        if (!$(event.target).hasClass(ns+'-bubble')) {
+        if (!$(e.target).hasClass(ns+'-bubble')) {
 
           // Call the callback, if set
           if (typeof plugin.settings.onbeforeshow_callback === 'function') {
@@ -170,6 +171,7 @@
             $('.'+ns+'-bubble').not($current_bubble).fadeOut();
           }
           $current_bubble.fadeToggle();
+
           if ($b.hasClass('active')) {
             clearTimeout(plugin.timer);
             plugin.timer = setTimeout(function(){
@@ -217,8 +219,8 @@
         }
 
         // Call the callback, if set
-        if (typeof plugin.settings.onchange_callback === 'function') {
-          plugin.settings.onchange_callback( this );
+        if (typeof plugin.settings.onchange_callback === "function") {
+          plugin.settings.onchange_callback(col);
         }
 
         if( plugin.settings.set_background === false ) {
