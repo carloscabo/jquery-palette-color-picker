@@ -155,7 +155,7 @@
         e.stopPropagation();
         var $b = $( this );
         //don't close on clicking the bubble
-        if (!$(event.target).hasClass(ns+'-bubble')) {
+        if (!$(e.target).hasClass(ns+'-bubble')) {
           $b.toggleClass('active').find('.'+ns+'-bubble').fadeToggle();
           if ($b.hasClass('active')) {
             clearTimeout(plugin.timer);
