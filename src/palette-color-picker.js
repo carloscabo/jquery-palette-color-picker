@@ -205,7 +205,7 @@
 
         // Call the callback, if set
         if (typeof plugin.settings.onchange_callback == "function") {
-          plugin.settings.onchange_callback();
+          plugin.settings.onchange_callback(col);
         }
 
         if( plugin.settings.set_background == false ) {
